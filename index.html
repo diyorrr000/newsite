@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAFARVCD - 3D Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 3D Fon Canvas -->
+    <canvas id="bgCanvas"></canvas>
+    
+    <!-- Ovoz Elementlari -->
+    <audio id="ambientSound" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="clickSound">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="hoverSound">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-hover-arrow-1108.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Yuklanayotgan Ekran -->
+    <div id="loadingScreen">
+        <div class="loader">
+            <div class="loaderCube">
+                <div class="face front"></div>
+                <div class="face back"></div>
+                <div class="face left"></div>
+                <div class="face right"></div>
+                <div class="face top"></div>
+                <div class="face bottom"></div>
+            </div>
+            <div class="loaderText">
+                <span class="loadingChar">Y</span>
+                <span class="loadingChar">U</span>
+                <span class="loadingChar">K</span>
+                <span class="loadingChar">L</span>
+                <span class="loadingChar">A</span>
+                <span class="loadingChar">N</span>
+                <span class="loadingChar">M</span>
+                <span class="loadingChar">O</span>
+                <span class="loadingChar">Q</span>
+                <span class="loadingChar">D</span>
+                <span class="loadingChar">A</span>
+            </div>
+            <div class="progressBar">
+                <div class="progressFill"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Ovoz Kontrolleri -->
+    <div class="audioController">
+        <button id="audioToggle" class="audioBtn">
+            <i class="fas fa-volume-up"></i>
+            <i class="fas fa-volume-mute"></i>
+        </button>
+        <div class="audioVisualizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+    
+    <!-- Asosiy Navigatsiya -->
+    <nav class="mainNav">
+        <div class="navContainer">
+            <div class="navLogo">
+                <div class="logo3d">
+                    <div class="cube">
+                        <div class="cubeFace front">Z</div>
+                        <div class="cubeFace back">V</div>
+                        <div class="cubeFace left">C</div>
+                        <div class="cubeFace right">D</div>
+                        <div class="cubeFace top"></div>
+                        <div class="cubeFace bottom"></div>
+                    </div>
+                </div>
+                <h1 class="logoText">ZAFAR<span class="gradientText">VCD</span></h1>
+            </div>
+            
+            <div class="navMenu">
+                <button class="navItem active" data-section="home">
+                    <i class="fas fa-home"></i>
+                    <span>Bosh Sahifa</span>
+                </button>
+                <button class="navItem" data-section="about">
+                    <i class="fas fa-user"></i>
+                    <span>Men haqimda</span>
+                </button>
+                <button class="navItem" data-section="skills">
+                    <i class="fas fa-code"></i>
+                    <span>Ko'nikmalar</span>
+                </button>
+                <button class="navItem" data-section="terminal">
+                    <i class="fas fa-terminal"></i>
+                    <span>Terminal</span>
+                </button>
+                <button class="navItem" data-section="projects">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Loyihalar</span>
+                </button>
+                <button class="navItem" data-section="contact">
+                    <i class="fas fa-envelope"></i>
+                    <span>Aloqa</span>
+                </button>
+            </div>
+            
+            <button class="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobil Menu -->
+        <div class="mobileMenu">
+            <button class="mobileMenuItem" data-section="home">Bosh Sahifa</button>
+            <button class="mobileMenuItem" data-section="about">Men haqimda</button>
+            <button class="mobileMenuItem" data-section="skills">Ko'nikmalar</button>
+            <button class="mobileMenuItem" data-section="terminal">Terminal</button>
+            <button class="mobileMenuItem" data-section="projects">Loyihalar</button>
+            <button class="mobileMenuItem" data-section="contact">Aloqa</button>
+        </div>
+    </nav>
+    
+    <!-- Asosiy Kontent -->
+    <main class="mainContent">
+        <!-- Bosh Sahifa Bo'limi -->
+        <section id="home" class="contentSection active">
+            <div class="sectionContainer">
+                <div class="homeHero">
+                    <!-- 3D Matn Effekti -->
+                    <div class="text3dContainer">
+                        <h2 class="text3d" data-text="FULLSTACK">FULLSTACK</h2>
+                        <h2 class="text3d" data-text="DASTURCHI">DASTURCHI</h2>
+                        <h2 class="text3d" data-text="PYTHON BOT">PYTHON BOT</h2>
+                        <h2 class="text3d" data-text="MUTAXASSISI">MUTAXASSISI</h2>
+                    </div>
+                    
+                    <div class="heroSubtitle">
+                        <p class="typewriter">Python, Sun'iy Intellekt va 3D texnologiyalari bilan kelajakdagi raqam tajribalar yarataman</p>
+                    </div>
+                    
+                    <!-- Suzuvchi 3D Ob'ektlar -->
+                    <div class="floatingObjects">
+                        <div class="floatObj pythonLogo">
+                            <div class="obj3d">
+                                <div class="pyramid">
+                                    <div class="base"></div>
+                                    <div class="side s1"></div>
+                                    <div class="side s2"></div>
+                                    <div class="side s3"></div>
+                                </div>
+                            </div>
+                            <span>Python</span>
+                        </div>
+                        <div class="floatObj botIcon">
+                            <div class="obj3d">
+                                <div class="botHead"></div>
+                                <div class="botBody"></div>
+                                <div class="botAntenna"></div>
+                            </div>
+                            <span>Bot Dasturlash</span>
+                        </div>
+                        <div class="floatObj codeCube">
+                            <div class="obj3d">
+                                <div class="cube">
+                                    <div class="face">{</div>
+                                    <div class="face">}</div>
+                                    <div class="face"><</div>
+                                    <div class="face">></div>
+                                    <div class="face">;</div>
+                                    <div class="face">=</div>
+                                </div>
+                            </div>
+                            <span>Kodlash</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Ijtimoiy Tarmoqlar -->
+                    <div class="socialLinks">
+                        <a href="https://instagram.com/zafarvcd" class="socialLink instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                            <span class="tooltip">@zafarvcd</span>
+                        </a>
+                        <a href="https://t.me/zafarvcd" class="socialLink telegram" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                            <span class="tooltip">@zafarvcd</span>
+                        </a>
+                        <a href="https://github.com/diyorrr000" class="socialLink github" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <span class="tooltip">diyorrr000</span>
+                        </a>
+                        <a href="https://t.me/shonazarov_termux" class="socialLink channel" target="_blank">
+                            <i class="fab fa-telegram-plane"></i>
+                            <span class="tooltip">Termux Kanal</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Chaqiruv Tugmalari -->
+                    <div class="ctaButtons">
+                        <button class="ctaBtn primary" data-section="terminal">
+                            <i class="fas fa-terminal"></i>
+                            <span>Terminalni Ishga Tushirish</span>
+                            <div class="btnGlow"></div>
+                        </button>
+                        <button class="ctaBtn secondary" data-section="contact">
+                            <i class="fas fa-rocket"></i>
+                            <span>Loyiha Boshlash</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Zarrachalar Fon -->
+                <div class="particles" id="particlesHome"></div>
+            </div>
+        </section>
+        
+        <!-- Men haqimda Bo'limi -->
+        <section id="about" class="contentSection">
+            <div class="sectionContainer">
+                <div class="sectionHeader">
+                    <h2 class="sectionTitle">
+                        <span class="titleNumber">01</span>
+                        Men haqimda
+                        <div class="titleLine"></div>
+                    </h2>
+                </div>
+                
+                <div class="aboutContent">
+                    <!-- 3D Profil Kartasi -->
+                    <div class="profile3d">
+                        <div class="profileCard">
+                            <div class="cardFront">
+                                <div class="avatarContainer">
+                                    <div class="avatar3d">
+                                        <div class="avatarSphere">
+                                            <div class="sphereLayer l1"></div>
+                                            <div class="sphereLayer l2"></div>
+                                            <div class="sphereLayer l3"></div>
+                                        </div>
+                                    </div>
+                                    <div class="avatarGlow"></div>
+                                </div>
+                                <h3 class="profileName">ZAFAR VCD</h3>
+                                <p class="profileTitle">Python Bot Dasturchisi</p>
+                                <div class="profileStats">
+                                    <div class="stat">
+                                        <i class="fas fa-robot"></i>
+                                        <span>50+ Bot</span>
+                                    </div>
+                                    <div class="stat">
+                                        <i class="fas fa-code"></i>
+                                        <span>100K+ Qator</span>
+                                    </div>
+                                    <div class="stat">
+                                        <i class="fas fa-clock"></i>
+                                        <span>24/7</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cardBack">
+                                <div class="backContent">
+                                    <h4>Bio</h4>
+                                    <p>Python Telegram botlari, Sun'iy intellekt integratsiyasi va 3D veb tajribalariga ixtisoslashgan full-stack dasturchi. Innovatsion raqam yechimlar yaratishga qiziqaman.</p>
+                                    <div class="backStats">
+                                        <div class="backStat">
+                                            <div class="statBar">
+                                                <div class="statFill" style="width: 95%"></div>
+                                            </div>
+                                            <span>Python</span>
+                                        </div>
+                                        <div class="backStat">
+                                            <div class="statBar">
+                                                <div class="statFill" style="width: 90%"></div>
+                                            </div>
+                                            <span>Telegram API</span>
+                                        </div>
+                                        <div class="backStat">
+                                            <div class="statBar">
+                                                <div class="statFill" style="width: 85%"></div>
+                                            </div>
+                                            <span>3D Veb</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Men haqimda Matni -->
+                    <div class="aboutText">
+                        <div class="textBlock">
+                            <h3><i class="fas fa-bolt"></i> Mening Sarguzashtim</h3>
+                            <p>Python ishqiboni sifatida boshlangan, Telegram bot dasturlashga ixtisoslashgan full-stack dasturchiga aylandim. Butun dunyo bo'ylab minglab foydalanuvchilarga xizmat ko'rsatayotgan 50 dan ortiq funksional bot yaratdim.</p>
+                        </div>
+                        
+                        <div class="textBlock">
+                            <h3><i class="fas fa-crosshairs"></i> Maqsad</h3>
+                            <p>Murakkab texnologiya va foydalanuvchi uchun qulay interfeyslar o'rtasidagi bo'shliqni to'ldirish, kuchli va bir vaqtning o'zida foydalanish uchun oson bot va ilovalar yaratish.</p>
+                        </div>
+                        
+                        <div class="textBlock">
+                            <h3><i class="fas fa-eye"></i> Ko'rinish</h3>
+                            <p>Sun'iy intellekt, 3D interfeyslar va real vaqtda aloqani birlashtirgan interaktiv raqam tajribalarining keyingi avlodiga asos solish.</p>
+                        </div>
+                        
+                        <!-- Tajriba Vaqt Chizig'i -->
+                        <div class="timeline">
+                            <div class="timelineItem">
+                                <div class="timelineDot"></div>
+                                <div class="timelineContent">
+                                    <h4>2020</h4>
+                                    <p>Python dasturlashni boshladim</p>
+                                </div>
+                            </div>
+                            <div class="timelineItem">
+                                <div class="timelineDot"></div>
+                                <div class="timelineContent">
+                                    <h4>2021</h4>
+                                    <p>Birinchi Telegram Bot ishga tushirildi</p>
+                                </div>
+                            </div>
+                            <div class="timelineItem">
+                                <div class="timelineDot"></div>
+                                <div class="timelineContent">
+                                    <h4>2022</h4>
+                                    <p>Full-stack dasturlashda mahorat</p>
+                                </div>
+                            </div>
+                            <div class="timelineItem">
+                                <div class="timelineDot"></div>
+                                <div class="timelineContent">
+                                    <h4>2023</h4>
+                                    <p>3D Veb va AI integratsiyasi</p>
+                                </div>
+                            </div>
+                            <div class="timelineItem">
+                                <div class="timelineDot"></div>
+                                <div class="timelineContent">
+                                    <h4>2024</h4>
+                                    <p>Professional Portfolio va Kengaytirilgan Botlar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Ko'nikmalar Bo'limi -->
+        <section id="skills" class="contentSection">
+            <div class="sectionContainer">
+                <div class="sectionHeader">
+                    <h2 class="sectionTitle">
+                        <span class="titleNumber">02</span>
+                        Ko'nikmalar
+                        <div class="titleLine"></div>
+                    </h2>
+                </div>
+                
+                <div class="skillsContent">
+                    <!-- 3D Ko'nikmalar Kublari -->
+                    <div class="skills3d">
+                        <div class="skillCube python">
+                            <div class="cube">
+                                <div class="face front">P</div>
+                                <div class="face back">Y</div>
+                                <div class="face left">T</div>
+                                <div class="face right">H</div>
+                                <div class="face top">O</div>
+                                <div class="face bottom">N</div>
+                            </div>
+                            <div class="skillInfo">
+                                <h4>Python</h4>
+                                <p>95%</p>
+                            </div>
+                        </div>
+                        
+                        <div class="skillCube telegram">
+                            <div class="cube">
+                                <div class="face front">T</div>
+                                <div class="face back">G</div>
+                                <div class="face left">B</div>
+                                <div class="face right">O</div>
+                                <div class="face top">T</div>
+                                <div class="face bottom">S</div>
+                            </div>
+                            <div class="skillInfo">
+                                <h4>Telegram Bot</h4>
+                                <p>90%</p>
+                            </div>
+                        </div>
+                        
+                        <div class="skillCube javascript">
+                            <div class="cube">
+                                <div class="face front">J</div>
+                                <div class="face back">S</div>
+                                <div class="face left">3</div>
+                                <div class="face right">D</div>
+                                <div class="face top">W</div>
+                                <div class="face bottom">E</div>
+                            </div>
+                            <div class="skillInfo">
+                                <h4>JS/Three.js</h4>
+                                <p>85%</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ko'nikmalar Ro'yxati -->
+                    <div class="skillsList">
+                        <div class="skillCategory">
+                            <h3><i class="fas fa-robot"></i> Bot Dasturlash</h3>
+                            <div class="skillItems">
+                                <div class="skillItem">
+                                    <span class="skillName">Python aiogram</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                                <div class="skillItem">
+                                    <span class="skillName">Telegram API</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="skillItem">
+                                    <span class="skillName">Webhook & Long Polling</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 88%"></div>
+                                    </div>
+                                </div>
+                                <div class="skillItem">
+                                    <span class="skillName">Bot Deployment</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skillCategory">
+                            <h3><i class="fas fa-code"></i> Veb Dasturlash</h3>
+                            <div class="skillItems">
+                                <div class="skillItem">
+                                    <span class="skillName">HTML/CSS/JS</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="skillItem">
+                                    <span class="skillName">Three.js & WebGL</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="skillItem">
+                                    <span class="skillName">React.js</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div class="skillItem">
+                                    <span class="skillName">Node.js</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skillCategory">
+                            <h3><i class="fas fa-database"></i> Ma'lumotlar Bazasi</h3>
+                            <div class="skillItems">
+                                <div class="skillItem">
+                                    <span class="skillName">PostgreSQL</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="skillItem">
+                                    <span class="skillName">MongoDB</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div class="skillItem">
+                                    <span class="skillName">Redis</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                <div class="skillItem">
+                                    <span class="skillName">SQLite</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skillCategory">
+                            <h3><i class="fas fa-tools"></i> Boshqa Vositalar</h3>
+                            <div class="skillItems">
+                                <div class="skillItem">
+                                    <span class="skillName">Docker</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div class="skillItem">
+                                    <span class="skillName">Git & GitHub</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="skillItem">
+                                    <span class="skillName">Linux Server</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="skillItem">
+                                    <span class="skillName">API Integration</span>
+                                    <div class="skillBar">
+                                        <div class="skillLevel" style="width: 88%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ko'nikma Ko'rsatkichlari -->
+                <div class="skillStats">
+                    <div class="statCard">
+                        <div class="statIcon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="statNumber">4+</div>
+                        <div class="statLabel">Yillik Tajriba</div>
+                    </div>
+                    <div class="statCard">
+                        <div class="statIcon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="statNumber">50+</div>
+                        <div class="statLabel">Tugatilgan Loyihalar</div>
+                    </div>
+                    <div class="statCard">
+                        <div class="statIcon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="statNumber">1000+</div>
+                        <div class="statLabel">Qoniqgan Mijozlar</div>
+                    </div>
+                    <div class="statCard">
+                        <div class="statIcon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div class="statNumber">100K+</div>
+                        <div class="statLabel">Kod Qatorlari</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 3D Terminal Bo'limi -->
+        <section id="terminal" class="contentSection">
+            <div class="sectionContainer">
+                <div class="sectionHeader">
+                    <h2 class="sectionTitle">
+                        <span class="titleNumber">03</span>
+                        Python Bot Terminali
+                        <div class="titleLine"></div>
+                    </h2>
+                </div>
+                
+                <div class="terminalContainer">
+                    <!-- 3D Terminal Vizualizatsiyasi -->
+                    <div class="terminal3d">
+                        <div class="terminalScreen">
+                            <div class="screenGlow"></div>
+                            <div class="screenContent" id="terminalOutput">
+                                <div class="outputLine welcome">
+                                    <span class="prompt">$</span> Python Bot Terminaliga xush kelibsiz v3.0
+                                </div>
+                                <div class="outputLine">
+                                    <span class="prompt">$</span> Python Telegram Bot Development Environment
+                                </div>
+                                <div class="outputLine">
+                                    <span class="prompt">$</span> Mavjud buyruqlarni ko'rish uchun "yordam" ni yozing
+                                </div>
+                                <div class="outputLine">
+                                    <span class="prompt">$</span> > Tizim muvaffaqiyatli ishga tushirildi...
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Terminal Buyruqlari -->
+                        <div class="terminalCommands">
+                            <div class="commandHistory" id="commandHistory">
+                                <!-- Buyruqlar tarixi shu yerda ko'rinadi -->
+                            </div>
+                            
+                            <div class="commandInput">
+                                <span class="inputPrompt">$</span>
+                                <input type="text" id="terminalInput" placeholder="Buyruqni kiriting..." autocomplete="off">
+                                <button id="executeCommand">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3D Terminal Elementlari -->
+                    <div class="terminalElements">
+                        <div class="terminalCube">
+                            <div class="tCube">
+                                <div class="face">>_</div>
+                                <div class="face">$</div>
+                                <div class="face">cd</div>
+                                <div class="face">ls</div>
+                                <div class="face">py</div>
+                                <div class="face">bot</div>
+                            </div>
+                        </div>
+                        
+                        <div class="terminalLights">
+                            <div class="light red"></div>
+                            <div class="light yellow"></div>
+                            <div class="light green"></div>
+                        </div>
+                        
+                        <!-- Tez Buyruqlar -->
+                        <div class="quickCommands">
+                            <button class="quickCmd" data-cmd="yordam">yordam</button>
+                            <button class="quickCmd" data-cmd="loyihalar">loyihalar</button>
+                            <button class="quickCmd" data-cmd="ko'nikmalar">ko'nikmalar</button>
+                            <button class="quickCmd" data-cmd="aloqa">aloqa</button>
+                            <button class="quickCmd" data-cmd="holat">holat</button>
+                            <button class="quickCmd" data-cmd="tozalash">tozalash</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Terminal Demo Kodlari -->
+                <div class="terminalDemo">
+                    <div class="demoTitle">
+                        <h3><i class="fas fa-code"></i> Python Bot Demo Kodi</h3>
+                        <button class="copyCode">
+                            <i class="far fa-copy"></i> Nusxa olish
+                        </button>
+                    </div>
+                    <pre class="demoCode">
+<span class="codeComment"># Telegram Bot yaratish - ZAFARVCD uslubi</span>
+<span class="codeKeyword">import</span> asyncio
+<span class="codeKeyword">from</span> aiogram <span class="codeKeyword">import</span> Bot, Dispatcher, types
+<span class="codeKeyword">from</span> aiogram.filters <span class="codeKeyword">import</span> Command
+
+<span class="codeComment"># Bot obyektini yaratish</span>
+bot = Bot(token="YOUR_BOT_TOKEN")
+dp = Dispatcher()
+
+<span class="codeComment"># Start buyrug'i uchun handler</span>
+@dp.message(Command("start"))
+<span class="codeKeyword">async def</span> start_command(message: types.Message):
+    <span class="codeKeyword">await</span> message.answer(
+        <span class="codeString">"👋 Salom! Men ZAFARVCD tomonidan yaratilgan botman!\n"</span>
+        <span class="codeString">"🚀 Python bot dasturlash bo'yicha mutaxassis\n"</span>
+        <span class="codeString">"📞 Aloqa: @zafarvcd"</span>
+    )
+
+<span class="codeComment"># Echo handler</span>
+@dp.message()
+<span class="codeKeyword">async def</span> echo_message(message: types.Message):
+    <span class="codeKeyword">await</span> message.answer(f"📩 Sizning xabaringiz: {message.text}")
+
+<span class="codeComment"># Botni ishga tushirish</span>
+<span class="codeKeyword">async def</span> main():
+    <span class="codeKeyword">await</span> dp.start_polling(bot)
+
+<span class="codeKeyword">if</span> __name__ == "__main__":
+    asyncio.run(main())</pre>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Loyihalar Bo'limi -->
+        <section id="projects" class="contentSection">
+            <div class="sectionContainer">
+                <div class="sectionHeader">
+                    <h2 class="sectionTitle">
+                        <span class="titleNumber">04</span>
+                        Loyihalarim
+                        <div class="titleLine"></div>
+                    </h2>
+                </div>
+                
+                <!-- 3D Loyihalar Galereyasi -->
+                <div class="projectsGallery">
+                    <!-- Loyiha 1 -->
+                    <div class="projectCard">
+                        <div class="project3d">
+                            <div class="projectCube">
+                                <div class="face front">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="face back">
+                                    <span>E-commerce</span>
+                                </div>
+                                <div class="face left">
+                                    <span>Python</span>
+                                </div>
+                                <div class="face right">
+                                    <span>Bot</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="projectInfo">
+                            <h3>Telegram Do'kon Boti</h3>
+                            <p>To'liq funksionallikdagi e-commerce boti. Mahsulotlar katalogi, savat, to'lov tizimi va buyurtma boshqaruvi.</p>
+                            <div class="projectTags">
+                                <span class="tag">Python</span>
+                                <span class="tag">aiogram</span>
+                                <span class="tag">PostgreSQL</span>
+                                <span class="tag">Stripe API</span>
+                            </div>
+                            <div class="projectLinks">
+                                <a href="#" class="projectLink">
+                                    <i class="fas fa-eye"></i> Demo
+                                </a>
+                                <a href="#" class="projectLink">
+                                    <i class="fab fa-github"></i> Kod
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Loyiha 2 -->
+                    <div class="projectCard">
+                        <div class="project3d">
+                            <div class="projectCube">
+                                <div class="face front">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="face back">
+                                    <span>AI Chat</span>
+                                </div>
+                                <div class="face left">
+                                    <span>OpenAI</span>
+                                </div>
+                                <div class="face right">
+                                    <span>GPT-4</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="projectInfo">
+                            <h3>AI Yordamchi Bot</h3>
+                            <p>OpenAI GPT-4 bilan integratsiyalashgan aqlli yordamchi bot. Tabiiy tilni qayta ishlash va kontekstli javoblar.</p>
+                            <div class="projectTags">
+                                <span class="tag">Python</span>
+                                <span class="tag">OpenAI</span>
+                                <span class="tag">GPT-4</span>
+                                <span class="tag">NLP</span>
+                            </div>
+                            <div class="projectLinks">
+                                <a href="#" class="projectLink">
+                                    <i class="fas fa-eye"></i> Demo
+                                </a>
+                                <a href="#" class="projectLink">
+                                    <i class="fab fa-github"></i> Kod
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Loyiha 3 -->
+                    <div class="projectCard">
+                        <div class="project3d">
+                            <div class="projectCube">
+                                <div class="face front">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="face back">
+                                    <span>Crypto</span>
+                                </div>
+                                <div class="face left">
+                                    <span>Trade</span>
+                                </div>
+                                <div class="face right">
+                                    <span>Bot</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="projectInfo">
+                            <h3>Kriptovalyuta Savdo Boti</h3>
+                            <p>Real vaqtda kriptovalyuta kurslarini kuzatish va avtomatik savdo strategiyalari bajaradigan bot.</p>
+                            <div class="projectTags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Binance API</span>
+                                <span class="tag">WebSocket</span>
+                                <span class="tag">TA-Lib</span>
+                            </div>
+                            <div class="projectLinks">
+                                <a href="#" class="projectLink">
+                                    <i class="fas fa-eye"></i> Demo
+                                </a>
+                                <a href="#" class="projectLink">
+                                    <i class="fab fa-github"></i> Kod
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Loyiha 4 -->
+                    <div class="projectCard">
+                        <div class="project3d">
+                            <div class="projectCube">
+                                <div class="face front">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <div class="face back">
+                                    <span>Game</span>
+                                </div>
+                                <div class="face left">
+                                    <span>Bot</span>
+                                </div>
+                                <div class="face right">
+                                    <span>3D</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="projectInfo">
+                            <h3>3D O'yin Boti</h3>
+                            <p>Telegram ichida ishlaydigan interaktiv 3D o'yin boti. Three.js va WebGL texnologiyalari asosida.</p>
+                            <div class="projectTags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Three.js</span>
+                                <span class="tag">WebGL</span>
+                                <span class="tag">Game Dev</span>
+                            </div>
+                            <div class="projectLinks">
+                                <a href="#" class="projectLink">
+                                    <i class="fas fa-eye"></i> Demo
+                                </a>
+                                <a href="#" class="projectLink">
+                                    <i class="fab fa-github"></i> Kod
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Loyiha Ko'rsatkichlari -->
+                <div class="projectsStats">
+                    <div class="projectStat">
+                        <div class="statCircle" data-percent="95">
+                            <span class="percent">95%</span>
+                        </div>
+                        <h4>Muvaffaqiyat Darajasi</h4>
+                    </div>
+                    <div class="projectStat">
+                        <div class="statCircle" data-percent="100">
+                            <span class="percent">100%</span>
+                        </div>
+                        <h4>Vaqtida Yetkazish</h4>
+                    </div>
+                    <div class="projectStat">
+                        <div class="statCircle" data-percent="90">
+                            <span class="percent">90%</span>
+                        </div>
+                        <h4>Mijozlar Qoniqishi</h4>
+                    </div>
+                    <div class="projectStat">
+                        <div class="statCircle" data-percent="85">
+                            <span class="percent">85%</span>
+                        </div>
+                        <h4>Kod Sifat</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Aloqa Bo'limi -->
+        <section id="contact" class="contentSection">
+            <div class="sectionContainer">
+                <div class="sectionHeader">
+                    <h2 class="sectionTitle">
+                        <span class="titleNumber">05</span>
+                        Bog'lanish
+                        <div class="titleLine"></div>
+                    </h2>
+                </div>
+                
+                <div class="contactContent">
+                    <!-- 3D Aloqa Formasi -->
+                    <div class="contactForm3d">
+                        <div class="formContainer">
+                            <div class="formHeader">
+                                <h3><i class="fas fa-paper-plane"></i> Xabar Yuborish</h3>
+                                <p>Loyihangiz haqida gaplashamiz</p>
+                            </div>
+                            
+                            <form id="contactForm">
+                                <div class="formGroup">
+                                    <label for="name">
+                                        <i class="fas fa-user"></i> Ismingiz
+                                    </label>
+                                    <input type="text" id="name" required placeholder="Ismingizni kiriting">
+                                </div>
+                                
+                                <div class="formGroup">
+                                    <label for="email">
+                                        <i class="fas fa-envelope"></i> Email manzil
+                                    </label>
+                                    <input type="email" id="email" required placeholder="email@example.com">
+                                </div>
+                                
+                                <div class="formGroup">
+                                    <label for="projectType">
+                                        <i class="fas fa-project-diagram"></i> Loyiha Turi
+                                    </label>
+                                    <select id="projectType" required>
+                                        <option value="">Tanlang</option>
+                                        <option value="bot">Telegram Bot</option>
+                                        <option value="web">Veb-sayt</option>
+                                        <option value="mobile">Mobil Ilova</option>
+                                        <option value="ai">AI/Sun'iy Intellekt</option>
+                                        <option value="other">Boshqa</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="formGroup">
+                                    <label for="message">
+                                        <i class="fas fa-comment"></i> Xabar
+                                    </label>
+                                    <textarea id="message" rows="5" required placeholder="Loyihangiz haqida batafsil ma'lumot..."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="submitBtn">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Xabarni Yuborish</span>
+                                    <div class="btnParticles"></div>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- 3D Aloqa Ma'lumotlari -->
+                    <div class="contactInfo3d">
+                        <div class="infoCube">
+                            <div class="cube">
+                                <div class="face front">
+                                    <i class="fas fa-phone"></i>
+                                    <span>Telegram</span>
+                                </div>
+                                <div class="face back">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Email</span>
+                                </div>
+                                <div class="face left">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Manzil</span>
+                                </div>
+                                <div class="face right">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Ish Vaqti</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Aloqa Ma'lumotlari -->
+                        <div class="contactDetails">
+                            <div class="contactItem">
+                                <div class="contactIcon">
+                                    <i class="fab fa-telegram"></i>
+                                </div>
+                                <div class="contactText">
+                                    <h4>Telegram</h4>
+                                    <p>@zafarvcd</p>
+                                    <a href="https://t.me/zafarvcd" target="_blank" class="contactLink">
+                                        Bog'lanish <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="contactItem">
+                                <div class="contactIcon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contactText">
+                                    <h4>Email</h4>
+                                    <p>zafar@dev.uz</p>
+                                    <a href="mailto:zafar@dev.uz" class="contactLink">
+                                        Email yozish <i class="fas fa-paper-plane"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="contactItem">
+                                <div class="contactIcon">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div class="contactText">
+                                    <h4>Instagram</h4>
+                                    <p>@zafarvcd</p>
+                                    <a href="https://instagram.com/zafarvcd" target="_blank" class="contactLink">
+                                        Profilni ko'rish <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="contactItem">
+                                <div class="contactIcon">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div class="contactText">
+                                    <h4>GitHub</h4>
+                                    <p>diyorrr000</p>
+                                    <a href="https://github.com/diyorrr000" target="_blank" class="contactLink">
+                                        Repozitoriylar <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ish Vaqti -->
+                        <div class="workingHours">
+                            <h4><i class="fas fa-calendar-check"></i> Ish Jadvali</h4>
+                            <div class="schedule">
+                                <div class="day">
+                                    <span>Dushanba - Juma</span>
+                                    <span>9:00 - 18:00</span>
+                                </div>
+                                <div class="day">
+                                    <span>Shanba</span>
+                                    <span>10:00 - 16:00</span>
+                                </div>
+                                <div class="day">
+                                    <span>Yakshanba</span>
+                                    <span>Dam olish</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Xarita -->
+                <div class="contactMap">
+                    <div class="mapContainer">
+                        <div class="map3d">
+                            <div class="mapGlobe">
+                                <div class="globe">
+                                    <div class="globeLayer"></div>
+                                    <div class="globeLayer"></div>
+                                    <div class="globeLayer"></div>
+                                </div>
+                                <div class="locationPin">
+                                    <i class="fas fa-map-pin"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mapInfo">
+                            <h4><i class="fas fa-location-dot"></i> Manzilim</h4>
+                            <p>Toshkent shahri, O'zbekiston</p>
+                            <p class="mapNote">Remote ish - Butun dunyo bo'ylab mijozlar bilan ishlayman</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="mainFooter">
+        <div class="footerContainer">
+            <div class="footerLogo">
+                <div class="footerCube">
+                    <div class="cube">
+                        <div class="face">Z</div>
+                        <div class="face">A</div>
+                        <div class="face">F</div>
+                        <div class="face">A</div>
+                        <div class="face">R</div>
+                        <div class="face">V</div>
+                    </div>
+                </div>
+                <div class="footerText">
+                    <h3>ZAFARVCD</h3>
+                    <p>Python Bot & 3D Web Mutaxassisi</p>
+                </div>
+            </div>
+            
+            <div class="footerLinks">
+                <div class="linkGroup">
+                    <h4>Bo'limlar</h4>
+                    <a href="#" data-section="home">Bosh Sahifa</a>
+                    <a href="#" data-section="about">Men haqimda</a>
+                    <a href="#" data-section="skills">Ko'nikmalar</a>
+                    <a href="#" data-section="terminal">Terminal</a>
+                    <a href="#" data-section="projects">Loyihalar</a>
+                    <a href="#" data-section="contact">Aloqa</a>
+                </div>
+                
+                <div class="linkGroup">
+                    <h4>Xizmatlar</h4>
+                    <a href="#">Telegram Bot Dasturlash</a>
+                    <a href="#">Veb-sayt Yaratish</a>
+                    <a href="#">3D Web Dizayn</a>
+                    <a href="#">AI Integratsiyasi</a>
+                    <a href="#">Konsultatsiya</a>
+                </div>
+                
+                <div class="linkGroup">
+                    <h4>Aloqa</h4>
+                    <a href="https://t.me/zafarvcd" target="_blank">Telegram: @zafarvcd</a>
+                    <a href="https://instagram.com/zafarvcd" target="_blank">Instagram: @zafarvcd</a>
+                    <a href="https://github.com/diyorrr000" target="_blank">GitHub: diyorrr000</a>
+                    <a href="mailto:zafar@dev.uz">Email: zafar@dev.uz</a>
+                </div>
+            </div>
+            
+            <div class="footerNewsletter">
+                <h4>Yangiliklarga Obuna Bo'ling</h4>
+                <p>Yangi loyihalar va texnologiyalar haqida birinchi bo'lib bilib oling</p>
+                <div class="newsletterForm">
+                    <input type="email" placeholder="Email manzilingiz">
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footerBottom">
+            <div class="copyright">
+                &copy; 2025 Diyorbek. Barcha huquqlar himoyalangan.
+            </div>
+            <div class="footerSocial">
+                <a href="https://instagram.com/zafarvcd" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://t.me/zafarvcd" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://github.com/diyorrr000" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://t.me/shonazarov_termux" target="_blank">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- 3D Elementlar Konteyneri -->
+    <div class="floating3dElements">
+        <!-- 3D Elementlar JavaScript orqali yaratiladi -->
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
